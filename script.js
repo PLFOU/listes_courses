@@ -1,7 +1,3 @@
-// Importer les modules Firebase
-import firebase from "firebase/app";
-import "firebase/firestore";
-
 // Configuration Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyC-Ov584BuloOkErobWOKuDCtFgNPrI4JU",
@@ -20,14 +16,24 @@ const db = firebase.firestore();
 const shoppingListRef = db.collection('shoppingList').doc('list');
 
 // Fonction pour ajouter un élément à la liste actuelle
-async function addItem() {
+function addItem() {
     let newItem = document.getElementById('item').value.trim();
     if (newItem !== '') {
-        await shoppingListRef.update({
-            items: firebase.firestore.FieldValue.arrayUnion({ name: newItem, completed: false })
+        shoppingListRef.set({}, { merge: true }).then(() => {
+            shoppingListRef.update({
+                items: firebase.firestore.FieldValue.arrayUnion({ name: newItem, completed: false })
+            });
         });
     }
 }
+
+// Observer les changements dans la liste Firestore
+shoppingListRef.onSnapshot((doc) => {
+    const data = doc.data();
+    if (data) {
+        displayList(data.items || []);
+    }
+});
 
 // Fonction pour afficher une liste
 function displayList(list) {
@@ -47,24 +53,12 @@ function displayList(list) {
 }
 
 // Fonction pour basculer l'état complet d'un élément de la liste
-async function toggleComplete(item) {
-    await shoppingListRef.update({
+function toggleComplete(item) {
+    shoppingListRef.update({
         items: firebase.firestore.FieldValue.arrayRemove(item),
         items: firebase.firestore.FieldValue.arrayUnion({ name: item.name, completed: !item.completed })
     });
 }
 
-// Fonction pour supprimer un élément de la liste
-async function removeItem(item) {
-    await shoppingListRef.update({
-        items: firebase.firestore.FieldValue.arrayRemove(item)
-    });
-}
-
-// Observer les changements dans la liste Firestore
-shoppingListRef.onSnapshot((doc) => {
-    const data = doc.data();
-    if (data) {
-        displayList(data.items || []);
-    }
-});
+// Ajouter un événement au bouton "Ajouter"
+document.getElementById('addItemBtn').addEventListener('click', addItem);
