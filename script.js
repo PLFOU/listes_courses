@@ -2,7 +2,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-// Configuration Firebase (remplacez par vos propres paramètres)
+// Configuration Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyC-Ov584BuloOkErobWOKuDCtFgNPrI4JU",
     authDomain: "listecourses-607b6.firebaseapp.com",
@@ -10,8 +10,8 @@ const firebaseConfig = {
     storageBucket: "listecourses-607b6.appspot.com",
     messagingSenderId: "818706547838",
     appId: "1:818706547838:web:5c363f01f457ed5c19842f"
-  };
-  
+};
+
 // Initialiser Firebase
 firebase.initializeApp(firebaseConfig);
 
