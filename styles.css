@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: calc(100% - 80px);
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 10px 10px 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    position: relative;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+li.completed {
+    text-decoration: line-through;
+    background-color: #ccc;
+}
+
+.delete-button {
+    position: absolute;
+    left: -40px; /* Distance par rapport à l'élément parent */
+    top: 0;
+    bottom: 0;
+    width: 40px; /* Largeur du bouton de suppression */
+    background-color: #ff0000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+.delete-button::before,
+.delete-button::after {
+    content: '';
+    width: 20px; /* Largeur de la croix */
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+}
+
+.delete-button::before {
+    transform: rotate(45deg);
+}
+
+.delete-button::after {
+    transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 20px);
+    }
+}
