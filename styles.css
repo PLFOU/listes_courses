@@ -34,52 +34,16 @@ ul {
 }
 
 li {
-    position: relative;
     border-radius: 5px;
     background-color: #f0f0f0;
     padding: 10px;
     margin-bottom: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 li.completed {
     text-decoration: line-through;
     background-color: #ccc;
-}
-
-.delete-button {
-    position: absolute;
-    left: -40px; /* Distance par rapport à l'élément parent */
-    top: 0;
-    bottom: 0;
-    width: 40px; /* Largeur du bouton de suppression */
-    background-color: #ff0000;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.delete-button:hover {
-    background-color: #cc0000;
-}
-
-.delete-button::before,
-.delete-button::after {
-    content: '';
-    width: 20px; /* Largeur de la croix */
-    height: 2px;
-    background-color: #fff;
-    position: absolute;
-}
-
-.delete-button::before {
-    transform: rotate(45deg);
-}
-
-.delete-button::after {
-    transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 480px) {
