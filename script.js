@@ -60,5 +60,8 @@ function toggleComplete(item) {
     });
 }
 
+// Sélectionner le bouton "Ajouter"
+const addItemBtn = document.getElementById('addItemBtn');
+
 // Ajouter un événement au bouton "Ajouter"
-document.getElementById('addItemBtn').addEventListener('click', addItem);
+addItemBtn.addEventListener('click', addItem);
